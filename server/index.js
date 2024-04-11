@@ -11,6 +11,7 @@ const app = express();
 
 // Route files
 const users = require("./routes/users");
+const tasks = require("./routes/tasks");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -20,6 +21,7 @@ app.use(logger);
 
 // Mount Routes
 app.use("/api/v1/users", users);
+app.use("/api/v1/tasks", tasks);
 
 const PORT = process.env.PORT || 8080;
 
