@@ -18,3 +18,13 @@ export const LoginSchema = Yup.object().shape({
   username: Yup.string().required("Username is required"),
   password: Yup.string().required("Password is required"),
 });
+
+export const TaskSchema = Yup.object().shape({
+  title: Yup.string().required("Required"),
+  dueDate: Yup.date().min(new Date(), "Must be today or later"),
+  isFlagged: Yup.bool(),
+});
+const myDate = new Date(Date.now());
+console.log(myDate.getUTCDate());
+
+// todo Figure out minimum date

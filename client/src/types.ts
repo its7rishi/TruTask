@@ -1,8 +1,9 @@
 export interface ITask {
+  _id: string;
   title: string;
   isFlagged: boolean;
   isCompleted: boolean;
-  dueDate?: Date;
+  dueDate: string;
   createdOn: Date;
   modifiedOn: Date;
   createdBy: string;

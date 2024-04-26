@@ -15,6 +15,20 @@ exports.getTasks = asyncHandler(async (req, res, next) => {
   }
 });
 
+// @desc Get All Tasks
+// route GET /api/v1/tasks/:id
+// access PRIVATE
+
+exports.getSingleTask = asyncHandler(async (req, res, next) => {
+  try {
+    const task = await Task.findById(req.params.id);
+
+    res.status(200).json({ status: "ok", data: task });
+  } catch (error) {
+    res.status(400).json({ status: "error", message: error.message });
+  }
+});
+
 // @desc Create Task
 // route POST /api/v1/tasks/create-task
 // access PRIVATE

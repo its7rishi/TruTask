@@ -5,9 +5,10 @@ import AuthLayout from "./_auth/AuthLayout";
 import RootLayout from "./_root/RootLayout";
 import { Home } from "./_root/pages";
 import { AuthProvider } from "./context/AuthContext";
+import CreateTask from "./_root/pages/CreateTask";
 function App() {
   return (
-    <div className="w-screen pb-4 overflow-hidden">
+    <div className="flex items-center justify-center pb-4 overflow-hidden">
       <AuthProvider>
         <Routes>
           {/* Public Routes */}
@@ -18,6 +19,7 @@ function App() {
           {/* Private Routes */}
           <Route element={<RootLayout />}>
             <Route path="/" element={<Home />} />
+            <Route path="/create-task" element={<CreateTask />} />
           </Route>
         </Routes>
       </AuthProvider>

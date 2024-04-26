@@ -3,7 +3,7 @@ import { themeChange } from "theme-change";
 import { FaPlus } from "react-icons/fa6";
 import { GrLogout } from "react-icons/gr";
 import { AuthContext } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const { user, setUser } = useContext(AuthContext);
@@ -17,16 +17,21 @@ const Navbar = () => {
   }, []);
 
   const handleLogout = () => {
-    console.log("Logout Clicked");
     setUser({ id: null, username: null, email: null, token: null });
     setAuthenticated(false);
     navigate("/login");
   };
 
+  const handleClick = () => {
+    navigate("/create-task");
+  };
+
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 border-b border-secondary">
       <div className="flex-1 gap-2">
-        <a className="btn btn-ghost text-sm md:text-xl">TruTask</a>
+        <Link to="/" className="btn btn-ghost text-sm md:text-xl">
+          TruTask
+        </Link>
         <div className="flex flex-col sm:flex-row gap-1 items-center">
           <img
             src="/assets/icons/profile-placeholder.svg"
@@ -39,16 +44,23 @@ const Navbar = () => {
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <FaPlus className="w-12 h-12 text-green-700 cursor-pointer" />
+            <span>
+              <FaPlus
+                className="w-4 h-4 md:w-5 md:h-5 text-green-700 cursor-pointer"
+                onClick={handleClick}
+              />
+            </span>
           </li>
           <li onClick={handleLogout}>
-            <GrLogout className="w-12 h-12 text-red-700 font-semibold cursor-pointer" />
+            <span>
+              <GrLogout className="w-4 h-4 md:w-5 md:h-5 text-red-700" />
+            </span>
           </li>
           <li>
             <select
               data-choose-theme
               defaultValue="light"
-              className="select select-primary w-full max-w-xs text-sm md:text-normal"
+              className="select-primary w-24 md:w-full max-w-xs text-xs md:text-normal tracking-tighter md:tracking-normal"
             >
               <option className="text-sm md:text-normal" value="light">
                 Light

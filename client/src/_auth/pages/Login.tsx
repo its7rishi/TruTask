@@ -2,9 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import { LoginSchema } from "../../Schemas";
 import axios from "axios";
-import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-// import Toast from "../components/Toast";
+import { useContext } from "react";
 
 interface FormValues {
   username: string;
@@ -38,19 +37,12 @@ const Login = () => {
             email: res.data.data.email,
             token: res.data.token,
           });
-          // const userData = {
-          //   id: res.data.data._id,
-          //   username: res.data.data.username,
-          //   email: res.data.data.email,
-          //   token: res.data.token,
-          // };
-          //
-          // console.log(userData);
 
           setAuthenticated(true);
           setSubmitting(false);
         })
         .catch((err) => console.log(err.response.data.message))
+
         .finally(() => {
           navigate("/");
         });

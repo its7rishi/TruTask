@@ -10,7 +10,7 @@ const RootLayout = () => {
   return (
     <div className="w-full">
       <Navbar />
-      <section className="flex h-full">
+      <section className="flex justify-center max-w-5xl">
         <Outlet />
       </section>
     </div>

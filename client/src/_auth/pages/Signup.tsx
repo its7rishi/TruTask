@@ -2,7 +2,6 @@ import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import { Link } from "react-router-dom";
 import { SignUpSchema } from "../../Schemas";
 import axios from "axios";
-SignUpSchema;
 
 interface FormValues {
   username: string;
@@ -32,6 +31,7 @@ const Signup = () => {
       );
 
       console.log(response);
+      setSubmitting(false);
     } catch (error) {
       console.log(error);
     } finally {
@@ -54,7 +54,7 @@ const Signup = () => {
             htmlFor="username"
           >
             <div className="label">
-              <span className="label-text">Enter a username?</span>
+              <span className="label-text">Enter a username:</span>
             </div>
             <Field
               type="text"
