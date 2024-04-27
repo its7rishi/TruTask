@@ -2,39 +2,47 @@ import { useEffect } from "react";
 import { TaskSchema } from "../../Schemas";
 
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
+import { ITask } from "../../types";
 
-interface UpdateTaskProps {
-  _id: string;
-  // title: string;
-  // dueDate: string;
-  // isFlagged: boolean;
-  // isCompleted: boolean;
-  // createdBy: string;
-}
 const UpdateTask = ({
-  _id,
-}: // title,
-// dueDate,
-// isFlagged,
-// isCompleted,
-// createdBy,
-UpdateTaskProps) => {
+  task,
+  handleUpdate,
+}: {
+  task: ITask;
+  handleUpdate: (values: ITask) => void;
+}) => {
+  const { _id, title, isFlagged, isCompleted, dueDate, createdBy } = task;
   const initialValues = {
     _id: _id,
-    // title: title,
-    // dueDate: dueDate,
-    // isFlagged: isFlagged,
-    // isCompleted: isCompleted,
-    // createdBy: createdBy,
+    title: title,
+    isFlagged: isFlagged,
+    isCompleted: isCompleted,
+    dueDate: getDate(dueDate),
+    createdBy: createdBy,
   };
 
-  const handleSubmit = async (
-    values: UpdateTaskProps,
-    { setSubmitting }: FormikHelpers<UpdateTaskProps>
+  function getDate(value: string) {
+    const date = new Date(value);
+    const task_date =
+      date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+    const task_month =
+      date.getMonth() < 10 ? "0" + date.getMonth() : date.getMonth();
+
+    const task_year = date.getFullYear();
+
+    const result = `${task_year}-${task_month}-${task_date}`;
+    console.log(result);
+    return result;
+  }
+
+  const handleSubmit = (
+    values: ITask,
+    { setSubmitting }: FormikHelpers<ITask>
   ) => {
     setSubmitting(true);
 
     console.log(JSON.stringify(values, null, 2));
+    handleUpdate(values);
 
     setSubmitting(false);
   };
@@ -51,9 +59,6 @@ UpdateTaskProps) => {
         onSubmit={handleSubmit}
       >
         <Form className="mx-auto w-[90%] py-3 px-2 text-primary flex flex-col items-center justify-center shadow-md rounded-md shadow-neutral">
-          <h2 className="font-semibold tracking-widest text-lg md:text-xl underline underline-offset-4 mb-4">
-            Update Task {_id}
-          </h2>
           <label
             htmlFor="title"
             className="form-control w-full max-w-xs flex flex-col gap-2"

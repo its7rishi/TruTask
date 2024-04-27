@@ -3,7 +3,8 @@ import { FaCheck } from "react-icons/fa";
 import { RiEdit2Fill } from "react-icons/ri";
 import { MdDeleteForever } from "react-icons/md";
 import { FaRegFlag, FaFlag } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import UpdateTask from "../_root/pages/UpdateTask";
 
 interface Props {
   task: ITask;
@@ -16,6 +17,8 @@ function TaskItem({ task, handleDelete, handleUpdate }: Props) {
   const [isTaskComplete, setIsTaskComplete] = useState<boolean>(isCompleted);
   const [isTaskFlagged, setIsTaskFlagged] = useState<boolean>(isFlagged);
   const [showModal, setShowModal] = useState<boolean>(false);
+
+  const modalRef = useRef<HTMLDialogElement>(null);
 
   const months = [
     "January",
@@ -60,9 +63,8 @@ function TaskItem({ task, handleDelete, handleUpdate }: Props) {
 
   useEffect(() => {
     if (showModal) {
-      if (document) {
-        (document.getElementById("modal") as HTMLFormElement).showModal();
-      }
+      // (document.getElementById("modal") as HTMLFormElement).showModal();
+      modalRef.current?.showModal();
     }
   }, [showModal]);
 
@@ -109,18 +111,17 @@ function TaskItem({ task, handleDelete, handleUpdate }: Props) {
           </div>
         </div>
       </div>
-      <dialog className="modal" id="modal">
+      <dialog className="modal" id="modal" ref={modalRef}>
         <div className="modal-box">
-          <h3 className="font-bold text-lg">
-            {_id} - {title}
-          </h3>
-          <p className="py-4">
-            Press ESC key or click the button below to close
-          </p>
+          <h3 className="font-bold text-lg mb-3">Update Task</h3>
+          <UpdateTask task={task} handleUpdate={handleUpdate} />
+
           <div className="modal-action">
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
-              <button className="btn">Close</button>
+              <button className="btn" onClick={() => setShowModal(false)}>
+                Close
+              </button>
             </form>
           </div>
         </div>
