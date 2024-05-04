@@ -2,6 +2,9 @@ import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import { Link } from "react-router-dom";
 import { SignUpSchema } from "../../Schemas";
 import axios from "axios";
+import { BiShow } from "react-icons/bi";
+import { BiHide } from "react-icons/bi";
+import { useState } from "react";
 
 interface FormValues {
   username: string;
@@ -11,6 +14,7 @@ interface FormValues {
 }
 
 const Signup = () => {
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const intialValues: FormValues = {
     username: "",
     email: "",
@@ -90,13 +94,35 @@ const Signup = () => {
             <div className="label">
               <span className="label-text">Enter your password?</span>
             </div>
-            <Field
-              type="password"
-              placeholder="Type here"
-              name="password"
-              id="password"
-              className="input input-bordered input-primary w-full max-w-xs placeholder:text-xs sm:text-sm"
-            />
+            <div className="relative">
+              <Field
+                type={showPassword ? "text" : "password"}
+                placeholder="Type here"
+                name="password"
+                id="password"
+                className="input input-bordered input-primary w-full max-w-xs placeholder:text-xs sm:text-sm"
+              />
+              <span
+                className="absolute top-3 right-3 cursor-pointer"
+                onClick={() => setShowPassword((prev) => !prev)}
+              >
+                {showPassword ? (
+                  <div
+                    className="tooltip tooltip-secondary text-xs tracking-tighter"
+                    data-tip="Hide Password"
+                  >
+                    <BiHide />
+                  </div>
+                ) : (
+                  <div
+                    className="tooltip tooltip-secondary text-xs tracking-tighter"
+                    data-tip="Show Password"
+                  >
+                    <BiShow />
+                  </div>
+                )}
+              </span>
+            </div>
           </label>
           <ErrorMessage
             component="span"

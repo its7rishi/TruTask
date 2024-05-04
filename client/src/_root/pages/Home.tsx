@@ -23,7 +23,7 @@ const Home = () => {
       if (response) {
         // console.log(response?.data.data[0].createdBy === user.user.id);
         const filteredData = response.data.data.filter(
-          (item: ITask) => item.createdBy !== user.user.id // todo - change !== to ===
+          (item: ITask) => item.createdBy === user.user.id
         );
         setTasks(filteredData);
       }
