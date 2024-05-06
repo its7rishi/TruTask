@@ -16,14 +16,14 @@ const tasks = require("./routes/tasks");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors());
-// app.use(
-//   cors({
-//     origin: ["https://tru-task-bgglln4wv-its7rishis-projects.vercel.app"],
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     credentials: true,
-//   })
-// );
+// app.use(cors());
+app.use(
+  cors({
+    origin: ["https://tru-task-35oeoihqe-its7rishis-projects.vercel.app"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 app.use(logger);
 
 // Mount Routes
