@@ -33,10 +33,15 @@ const CreateTask = () => {
     console.log("values: ", JSON.stringify(values, null, 2));
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/v1/tasks/create-task",
-        values
-      );
+      const response = await axios
+        // .post(
+        //   "http://localhost:5000/api/v1/tasks/create-task",
+        //   values
+        // );
+        .post(
+          "https://tru-task-bgglln4wv-its7rishis-projects.vercel.app/api/v1/tasks/create-task",
+          values
+        );
 
       console.log(response);
     } catch (error) {

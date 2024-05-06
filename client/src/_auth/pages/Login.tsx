@@ -33,7 +33,11 @@ const Login = () => {
     setSubmitting(true);
 
     await axios
-      .post("http://localhost:5000/api/v1/users/login", values)
+      // .post("http://localhost:5000/api/v1/users/login", values)
+      .post(
+        "https://tru-task-bgglln4wv-its7rishis-projects.vercel.app/api/v1/users/login",
+        values
+      )
 
       .then((response) => {
         console.log(response.data);

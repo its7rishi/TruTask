@@ -29,10 +29,15 @@ const Signup = () => {
     setSubmitting(true);
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/v1/users/create-user",
-        values
-      );
+      const response = await axios
+        // .post(
+        //   "http://localhost:5000/api/v1/users/create-user",
+        //   values
+        // );
+        .post(
+          "https://tru-task-bgglln4wv-its7rishis-projects.vercel.app/api/v1/users/create-user",
+          values
+        );
 
       console.log(response);
       setSubmitting(false);

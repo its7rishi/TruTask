@@ -18,7 +18,11 @@ const Home = () => {
   const fetchTasks = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get("http://localhost:5000/api/v1/tasks");
+      const response = await axios
+        // .get("http://localhost:5000/api/v1/tasks");
+        .get(
+          "https://tru-task-bgglln4wv-its7rishis-projects.vercel.app/api/v1/tasks"
+        );
 
       if (response) {
         // console.log(response?.data.data[0].createdBy === user.user.id);
@@ -35,7 +39,11 @@ const Home = () => {
 
   async function handleUpdate(value: ITask) {
     await axios
-      .put(`http://localhost:5000/api/v1/tasks/${value._id}`, value)
+      // .put(`http://localhost:5000/api/v1/tasks/${value._id}`, value)
+      .put(
+        `https://tru-task-bgglln4wv-its7rishis-projects.vercel.app/api/v1/tasks/${value._id}`,
+        value
+      )
       .then((res) => {
         console.log(res);
         fetchTasks();
@@ -45,7 +53,10 @@ const Home = () => {
 
   async function handleDelete(id: string) {
     await axios
-      .delete(`http://localhost:5000/api/v1/tasks/${id}`)
+      // .delete(`http://localhost:5000/api/v1/tasks/${id}`)
+      .delete(
+        `https://tru-task-bgglln4wv-its7rishis-projects.vercel.app/api/v1/tasks/${id}`
+      )
       .then((res) => {
         if (res.data.status === "ok") {
           fetchTasks();
