@@ -17,6 +17,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cors());
+// app.use(
+//   cors({
+//     origin: ["https://trutask-1whq.vercel.app"],
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     credentials: true,
+//   })
+// );
 app.use(logger);
 
 // Mount Routes
