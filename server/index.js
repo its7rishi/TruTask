@@ -19,9 +19,8 @@ app.use(express.urlencoded({ extended: true }));
 // app.use(cors());
 app.use(
   cors({
-    origin: [
+    origin:
       "https://tru-task-frontend-dvl29egvt-its7rishis-projects.vercel.app",
-    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
     optionsSuccessStatus: 200,
