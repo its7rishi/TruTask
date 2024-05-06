@@ -22,7 +22,7 @@ app.use(
     origin: [
       "https://tru-task-frontend-i9sfr26fl-its7rishis-projects.vercel.app",
     ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     credentials: true,
   })
 );
